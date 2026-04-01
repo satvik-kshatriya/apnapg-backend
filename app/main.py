@@ -24,12 +24,7 @@ app = FastAPI(
 # ── CORS (open for development — tighten in production) ────────
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=[
-        "http://localhost:5173",
-        "http://127.0.0.1:5173",
-        "http://localhost:3000",
-        "http://127.0.0.1:3000"
-    ],
+    allow_origins=settings.ALLOWED_ORIGINS,
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -51,4 +46,3 @@ app.include_router(properties.router,  prefix="/api/properties",  tags=["Propert
 app.include_router(connections.router, prefix="/api/connections", tags=["Connections"])
 app.include_router(reviews.router,     prefix="/api/reviews",     tags=["Reviews"])
 app.include_router(documents.router,   prefix="/api/documents",   tags=["Documents"])
-
